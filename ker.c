@@ -3,11 +3,13 @@
 #include <linux/cdev.h>
 #include <asm/uaccess.h>
 #include <linux/sysfs.h>
+#include <linux/moduleparam.h>
 
 MODULE_AUTHOR("Glebik Stas, Kolesov Alexey");
 
 //int length = 1000;
-//static char buf_msg[length + 1] = "Hello\n";
+static int param;
+module_param(param, int, 0);
 
 struct kobject kobj;
 struct kobj_type type;
