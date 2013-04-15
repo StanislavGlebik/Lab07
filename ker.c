@@ -18,6 +18,7 @@ struct kobj_type type;
 struct timer_list timer;
 
 void function(unsigned long x) {
+
 	printk(KERN_INFO "SOS\n");
 	mod_timer(&timer, jiffies + param*HZ);
 }
@@ -33,8 +34,6 @@ static int __init init(void)
 	init_timer(&timer);
 	timer.function = function;
 	timer.expires = jiffies  + param*HZ;
-	printk(KERN_INFO "%d\n", param);
-	printk(KERN_INFO "hello\n");
 
 	add_timer(&timer);
 
