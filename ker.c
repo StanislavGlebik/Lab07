@@ -18,14 +18,24 @@ struct kobj_type type;
 struct timer_list timer;
 
 void function(unsigned long x) {
+	static int y = 0;
+	static bool state = false;
+	
+	if (!((++y) % 3)) {
+		state = !state;
+	}
 
 	printk(KERN_INFO "SOS\n");
-	mod_timer(&timer, jiffies + param*HZ);
+	if (state) {
+		mod_timer(&timer, jiffies + 2*param*HZ);
+	}
+	else {
+		mod_timer(&timer, jiffies + param*HZ);
+	}
 }
 
 static int __init init(void) 
 {
-
 	printk(KERN_INFO "ker module is loaded\n");
 	kobject_init(&kobj, &type);
 	kobject_set_name(&kobj, "mySysfsModule");
