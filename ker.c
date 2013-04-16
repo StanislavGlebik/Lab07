@@ -8,6 +8,7 @@
 #include <linux/jiffies.h>
 
 MODULE_AUTHOR("Glebik Stas, Kolesov Alexey");
+MODULE_LICENSE("GPL");
 
 static int param=1;
 module_param(param, int, 0);
